@@ -1,6 +1,6 @@
 # SIMS PPOB - Adhitya Sukma
 
-SIMS PPOB adalah test assignment berupa Aplikasi yang dibuat mengunakan framework Codeigniter versi 4++ memiliki
+**SIMS PPOB** adalah test assignment berupa Aplikasi yang dibuat mengunakan framework Codeigniter versi 4++ dan Aplikasi **SIMS PPOB** memiliki
 beberapa fitur seperti:
 
 1. Registrasi
