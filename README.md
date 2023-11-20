@@ -1,6 +1,6 @@
 # SIMS PPOB - Adhitya Sukma
 
-SIMS PPOB adalah test assignment berupa Aplikasi yang dibuat mengunakan framework Codeigniter versi memiliki
+SIMS PPOB adalah test assignment berupa Aplikasi yang dibuat mengunakan framework Codeigniter versi 4++ memiliki
 beberapa fitur seperti:
 
 1. Registrasi
@@ -14,9 +14,10 @@ beberapa fitur seperti:
 
 # Kebutuhan Aplikasi
 
-1. Donwload dan Install Composer di https://getcomposer.org/
-2. Download dan Install gitbash di https://git-scm.com/downloads
-3. Minimun PHP Version 7.4
+1. Minimun PHP Version 7.4
+1. Download dan Install xampp https://www.apachefriends.org/download.html
+1. Donwload dan Install Composer https://getcomposer.org/
+1. Download dan Install gitbash https://git-scm.com/downloads
 
 ## Konfigurasi Database
 
