@@ -1,0 +1,31 @@
+.form-login .form-floating:focus-within {
+  z-index: 2;
+}
+.form-login .col-left{
+ margin: auto;
+  justify-content: center;
+  display: inline-flex;
+}
+.form-login .col-right img{
+  width: 75%;
+  object-fit: cover;
+}
+.form-login .password_show_hide:hover,.form-registration .password_show_hide:hover{
+    cursor: pointer;
+}
+.text-logo {
+    font-size: 0.8em;
+}
+/** Registration **/
+.form-registration .form-floating:focus-within {
+    z-index: 2;
+}
+.form-registration .col-left{
+    margin: auto;
+    justify-content: center;
+    display: inline-flex;
+}
+.form-registration .col-right img{
+    width: 75%;
+    object-fit: cover;
+}

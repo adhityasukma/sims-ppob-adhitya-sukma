@@ -1,0 +1,159 @@
+/** top-header **/
+.top-header img{
+    width: 24px;
+    height: 24px;
+}
+.top-header a{
+    text-decoration: none;
+    color: #222222;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.top-header .logo-text{
+    font-size: 1.2rem;
+}
+.top-header .top-header-right ul{
+    display: inline-flex;
+    gap: 80px;
+}
+.top-header .top-header-right ul li{
+    list-style: none;
+}
+.top-header .top-header-right ul li a{
+   text-decoration: none;
+    color: #222222;
+    font-weight: 600;
+}
+.top-header .top-header-right ul li a.active{
+    color: red;
+}
+.top-header .top-header-right ul li a:hover{
+    color: red;
+}
+/** section-profile **/
+.section-profile img{
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.lihat-saldo{
+    font-size: 0.8rem;
+}
+.row-profile{
+    width: 100px;
+    margin: auto;
+    position: relative;
+}
+.row-profile img{
+    width: 100px;
+    object-fit: cover;
+    height: 95px;
+}
+.row-profile i{
+    position: absolute;
+    bottom: 0px;
+    z-index: 9999;
+    display: inline-flex;
+    right: -7px;
+    padding: 8px;
+    background: #fff;
+}
+.section-akun .icon-ubah-photo{
+    display: none;
+}
+.section-akun .uploadFile{
+    display: none
+}
+/** Services **/
+.main-content a{
+    text-decoration: none;
+    color: #222222;
+}
+.main-content .section-service a:hover{
+    color: red;
+}
+/** Carousel **/
+.owl-carousel, .owl-carousel .owl-item{
+    padding-right: 15px;
+}
+
+/** transacation service **/
+.section-ts .btn-nominal-ts{
+    width: 100%;
+}
+.section-ts img{
+    width: 32px;
+}
+/** Topup **/
+.section-topup .nominal_topup{
+    width: 110px;
+}
+.section-topup .btn-nominal-topup{
+    width: 100%;
+}
+.btn:disabled{
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.modal-container .modal-dialog{
+    width: 300px;
+}
+.modal-container .modal-dialog img{
+    width: 40px;
+}
+.modal-container .modal-dialog .topup-gagal-icon{
+    font-size: 2.5em;
+    color: #d33;
+}
+.modal-container .modal-dialog .topup-berasil-icon{
+    font-size: 2.5em;
+}
+/** history transaction **/
+.section-th .th-nominal{
+    font-size: 1.5rem;
+}
+.section-th .th-date{
+    font-size: 0.8rem;
+}
+/** Sweetalert **/
+div:where(.swal2-icon){
+    border-color:transparent;
+}
+.swal2-icon img{
+    width: 65px;
+}
+div:where(.swal2-container) h2:where(.swal2-title){
+    font-size: 1.2em;
+    font-weight: 600;
+}
+div:where(.swal2-container) .swal2-html-container{
+    font-size: 1.875em;
+    font-weight: 600;
+    margin: 0.3em 1.6em 0.3em;
+}
+
+/** Preloader **/
+.loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #555;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+    position: initial;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
