@@ -24,13 +24,21 @@ beberapa fitur seperti:
 1. Buka phpmyadmin dan buat database baru yaitu **sims-ppob**
 2. Copy dan Paste file env kemudian file tersebut di rename menjadi .env
 3. Buka file .env kemudian edit baris berikut disesuaikan dengan konfigurasi Database di phpMyadmin:
+
    > database.default.hostname = localhost
+
    > database.default.database = sims-ppob
+
    > database.default.username = root
+
    > database.default.password =
+
    > database.default.DBDriver = MySQLi
+
    > database.default.DBPrefix =
+
    > database.default.port = 3306
+
 4. Buka gitbash di dalam directory aplikasi sims ppob lalu jalankan baris berikut:
 
 ```
