@@ -3,107 +3,212 @@
 $this->extend('layout\main');
 
 $this->section('content') ?>
-    <div class="d-flex">
-        <div class="section-profile col-5">
-            <?php
-            if (empty($data['user']['profile_image'])):?>
-                <img class="align-top me-2" src="../assets/img/profile/Profile Photo.png"
-                     alt="Profile Photo.png">
-                <div class="mt-2">
-                    Selamat datang,
-                </div>
-            <?php
-            else:?>
-                <img class="align-top me-2" src="<?php echo $data['user']['profile_image'] ?>"
-                     alt="Profile Photo.png">
-            <?php
-            endif;
-            ?>
-            <div class="fw-medium fs-4">
-                <?php echo $data['user']['first_name'] . " " . $data['user']['last_name']; ?>
-            </div>
-        </div>
-        <div class="section-total-saldo col-7">
-            <div class="rounded p-3 mb-2 bg-danger text-white">
-                <div>Saldo anda</div>
-                <div><?php
-                    if (!isset($data['balance']['balance'])):?>
-                        <span class="currency fw-bold fs-4">Rp </span><span
-                                class="nominal fw-bold fs-4"><?php echo format_rupiah(0); ?></span>
-
-                    <?php
-                    else:?>
-                        <span class="currency fw-bold fs-4">Rp </span><span
-                                class="nominal fw-bold fs-4"><?php echo format_rupiah($data['balance']['balance']); ?></span>
-                    <?php
-                    endif;
-                    ?>
-                </div>
-                <div class="lihat-saldo">Lihat saldo <i class="fa fa-eye"></i></div>
-            </div>
-        </div>
-    </div>
     <div class="section-th mt-4">
         <div class="fw-medium">Semua Transaksi</div>
-        <div class="th-content">
-            <?php if ($data['history']): ?>
-                <?php foreach ($data['history'] as $thv): ?>
-                    <div class="d-flex mt-4 border rounded px-3 py-2">
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="<?php echo $thv['type_class']; ?> fw-medium th-nominal"><?php echo $thv['total_amount']; ?></div>
-                            </div>
-                            <div class="row">
-                                <div class="text-body-tertiary fw-medium th-date"><?php echo $thv['created_on']; ?></div>
-                            </div>
-                        </div>
-                        <div class="col-6 py-2">
-                            <div class="th-type text-end py-2 fw-medium"><?php echo $thv['description']; ?></div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <?php if (!$data['hide_showmore_btn']): ?>
-                    <div class="row">
-                        <a href="#" class="th-show-more text-danger fw-bold text-center mt-4"
-                           data-limit="<?php echo $data['limit'] ?>">Show more</a>
-                    </div>
-                <?php endif; ?>
-            <?php
-            else:?>
-                <div class="text-center text-body-tertiary">Maaf tidak ada histori transaksi</div>
-            <?php endif; ?>
-        </div>
+        <div class="th-content data-th"></div>
     </div>
     <script type="text/javascript">
         jQuery(function ($) {
             $(document).ready(function (e) {
+                let history_limit = 5;
+
+                jQuery.ajax({
+                    url: "https://take-home-test-api.nutech-integrasi.app/transaction/history?offset=0&limit="+history_limit,
+                    type: "GET",
+                    dataType: "JSON",
+                    headers: {
+                        Authorization: 'Bearer ' + $.session.get('token')
+                    },
+                    beforeSend: function () {
+                        ci_helper.helper.blockUI('html');
+                    },
+                    success: function (response) {
+                        ci_helper.helper.unblockUI('html');
+                        $.session.set("history_limit",response.data.limit);
+
+                        let html = '', history = '', store_service = {},type_class='',indicator='+';
+                        if (typeof response.data !== "undefined") {
+                            if (typeof response.data.records !== "undefined") {
+                                $.each(response.data.records, function (i, v) {
+                                    let total_amount = v.total_amount;
+                                    if(v.transaction_type=="PAYMENT"){
+                                        type_class='text-danger';
+                                        indicator = "-"
+                                    }else{
+                                        type_class='text-success';
+                                    }
+
+                                    var date = new Date(v.created_on);
+                                    var tahun = date.getFullYear();
+                                    var bulan = date.getMonth();
+                                    var tanggal = date.getDate();
+                                    var hari = date.getDay();
+                                    var jam = date.getHours();
+                                    var menit = date.getMinutes();
+                                    var detik = date.getSeconds();
+                                    switch(hari) {
+                                        case 0: hari = "Minggu"; break;
+                                        case 1: hari = "Senin"; break;
+                                        case 2: hari = "Selasa"; break;
+                                        case 3: hari = "Rabu"; break;
+                                        case 4: hari = "Kamis"; break;
+                                        case 5: hari = "Jum'at"; break;
+                                        case 6: hari = "Sabtu"; break;
+                                    }
+                                    switch(bulan) {
+                                        case 0: bulan = "Januari"; break;
+                                        case 1: bulan = "Februari"; break;
+                                        case 2: bulan = "Maret"; break;
+                                        case 3: bulan = "April"; break;
+                                        case 4: bulan = "Mei"; break;
+                                        case 5: bulan = "Juni"; break;
+                                        case 6: bulan = "Juli"; break;
+                                        case 7: bulan = "Agustus"; break;
+                                        case 8: bulan = "September"; break;
+                                        case 9: bulan = "Oktober"; break;
+                                        case 10: bulan = "November"; break;
+                                        case 11: bulan = "Desember"; break;
+                                    }
+                                    var tampilTanggal =  hari + " " + tanggal + " " + bulan + " " + tahun;
+                                    var tampilWaktu =  jam + ":" + menit + ":" + detik;
+                                    html +='<div class="d-flex mt-4 border rounded px-3 py-2">';
+                                    html +='<div class="col-6">';
+
+                                    html +='<div class="row">';
+                                    html +='<div class="'+type_class+' fw-medium th-nominal">'+indicator+ ' Rp '+ total_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')+'</div>';
+                                    html +='</div>';
+
+                                    html +='<div class="row">';
+                                    html +='<div class="text-body-tertiary fw-medium th-date">'+tampilTanggal+' '+tampilWaktu+'</div>';
+                                    html +='</div>';
+
+                                    html +='</div>';
+
+                                    html +='<div class="col-6 py-2">';
+                                    html +='<div class="th-type text-end py-2 fw-medium">'+v.description+'</div>';
+                                    html +='</div>';
+                                    html +='</div>';
+                                });
+
+                                if(parseInt(response.data.limit) > parseInt(response.data.records.length)){
+                                }else{
+                                    html +='<div class="row">';
+                                    html +=' <a href="#" class="th-show-more text-danger fw-bold text-center mt-4" data-limit="'+response.data.limit+'">Show more</a>';
+                                    html +='</div>';
+                                }
+
+                                if(parseInt(response.data.records.length)=== 0){
+                                    html +='<div class="text-center text-body-tertiary">Maaf tidak ada histori transaksi</div>';
+                                }
+
+                                $(".data-th").html(html);
+                            }
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        ci_helper.helper.unblockUI('html');
+                    }
+                });
                 $(document).on(
                     "click",
                     ".th-show-more",
                     function (e) {
                         e.preventDefault();
-                        let limit = $(this).attr("data-limit");
-                        $.ajax({
-                            url: "<?php echo site_url('history/')?>" + limit,
+                        let history_limit = parseInt($.session.get("history_limit"))+5;
+
+                        jQuery.ajax({
+                            url: "https://take-home-test-api.nutech-integrasi.app/transaction/history?offset=0&limit="+history_limit,
                             type: "GET",
                             dataType: "JSON",
+                            headers: {
+                                Authorization: 'Bearer ' + $.session.get('token')
+                            },
                             beforeSend: function () {
                                 ci_helper.helper.blockUI('html');
                             },
-                            success: function (data) {
+                            success: function (response) {
                                 ci_helper.helper.unblockUI('html');
-                                $(".th-content").html(data.html);
-                                // if (!data.status) {
-                                //     $("#ts-modal").find(".modal-content").html(data.pesan);
-                                //     $("#ts-modal").modal("show");
-                                // }else{
-                                //     $("#ts-modal").find(".modal-content").html(data.pesan);
-                                //     $("#ts-modal").modal("show");
-                                //     $(".section-total-saldo .nominal").html(data.total_saldo_user);
-                                // }
+                                $.session.set("history_limit",response.data.limit);
+
+                                let html = '', history = '', store_service = {},type_class='',indicator='+';
+                                if (typeof response.data !== "undefined") {
+                                    if (typeof response.data.records !== "undefined") {
+                                        $.each(response.data.records, function (i, v) {
+                                            let total_amount = v.total_amount;
+                                            if(v.transaction_type=="PAYMENT"){
+                                                type_class='text-danger';
+                                                indicator = "-"
+                                            }else{
+                                                type_class='text-success';
+                                            }
+
+                                            var date = new Date(v.created_on);
+                                            var tahun = date.getFullYear();
+                                            var bulan = date.getMonth();
+                                            var tanggal = date.getDate();
+                                            var hari = date.getDay();
+                                            var jam = date.getHours();
+                                            var menit = date.getMinutes();
+                                            var detik = date.getSeconds();
+                                            switch(hari) {
+                                                case 0: hari = "Minggu"; break;
+                                                case 1: hari = "Senin"; break;
+                                                case 2: hari = "Selasa"; break;
+                                                case 3: hari = "Rabu"; break;
+                                                case 4: hari = "Kamis"; break;
+                                                case 5: hari = "Jum'at"; break;
+                                                case 6: hari = "Sabtu"; break;
+                                            }
+                                            switch(bulan) {
+                                                case 0: bulan = "Januari"; break;
+                                                case 1: bulan = "Februari"; break;
+                                                case 2: bulan = "Maret"; break;
+                                                case 3: bulan = "April"; break;
+                                                case 4: bulan = "Mei"; break;
+                                                case 5: bulan = "Juni"; break;
+                                                case 6: bulan = "Juli"; break;
+                                                case 7: bulan = "Agustus"; break;
+                                                case 8: bulan = "September"; break;
+                                                case 9: bulan = "Oktober"; break;
+                                                case 10: bulan = "November"; break;
+                                                case 11: bulan = "Desember"; break;
+                                            }
+                                            var tampilTanggal =  hari + " " + tanggal + " " + bulan + " " + tahun;
+                                            var tampilWaktu =  jam + ":" + menit + ":" + detik;
+                                            html +='<div class="d-flex mt-4 border rounded px-3 py-2">';
+                                            html +='<div class="col-6">';
+
+                                            html +='<div class="row">';
+                                            html +='<div class="'+type_class+' fw-medium th-nominal">'+indicator+ ' Rp '+ total_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')+'</div>';
+                                            html +='</div>';
+
+                                            html +='<div class="row">';
+                                            html +='<div class="text-body-tertiary fw-medium th-date">'+tampilTanggal+' '+tampilWaktu+'</div>';
+                                            html +='</div>';
+
+                                            html +='</div>';
+
+                                            html +='<div class="col-6 py-2">';
+                                            html +='<div class="th-type text-end py-2 fw-medium">'+v.description+'</div>';
+                                            html +='</div>';
+                                            html +='</div>';
+                                        });
+                                        if(parseInt(response.data.limit) > parseInt(response.data.records.length)){
+                                        }else{
+                                            html +='<div class="row">';
+                                            html +=' <a href="#" class="th-show-more text-danger fw-bold text-center mt-4" data-limit="'+response.data.limit+'">Show more</a>';
+                                            html +='</div>';
+                                        }
+
+                                        if(parseInt(response.data.records.length) ==0){
+                                            html +='<div class="text-center text-body-tertiary">Maaf tidak ada histori transaksi</div>';
+                                        }
+
+                                        $(".data-th").html(html);
+                                    }
+                                }
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
-                                alert('Error get data from ajax');
                                 ci_helper.helper.unblockUI('html');
                             }
                         });

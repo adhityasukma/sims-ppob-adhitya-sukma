@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/vendor/fontawesome-free/css/all.min.css">
     <script type="text/javascript" src="/assets/vendor/jquery/jquery.js"></script>
-
+    <script src="/assets/vendor/jquery-blockui/jquery.blockUI.js"></script>
+    <script src="/assets/js/helper.js"></script>
     <!-- Custom styles for this template -->
     <link href="/assets/css/login.css" rel="stylesheet">
 </head>
@@ -27,98 +28,58 @@
                                                                 alt="Logo.png"><span
                             class="align-middle text-logo">SIMS PPOB - Adhitya Sukma</span></div>
                 <h1 class="h3 mb-3 fw-medium text-center">Lengkapi data untuk membuat akun</h1>
-                <form class="mt-5" method="post" action="/registration">
-                    <?= csrf_field() ?>
-                    <?php
-                    echo form_hidden('is_registration', true);
-                    ?>
+                <div class="berhasil-pesan"></div>
+                <form class="mt-5 registration-form" method="post" action="/registration">
                     <div class="input-group mb-3">
                         <label class="input-group-text"
                                id="email">@</label>
                         <input type="email" name="email"
-                               class="form-control <?php echo isset(session()->get("errors")['email']) ? 'is-invalid' : '' ?>"
-                               placeholder="masukan email anda" aria-label="email" aria-describedby="email" required value="<?php echo set_value("email");?>">
-                        <div class="invalid-feedback text-end">
-                            <?php
-                            if(isset(session()->get("errors")['email'])):
-                                echo session()->getFlashdata('errors')['email'];
-                            endif;
-                            ?>
+                               class="form-control input_email"
+                               placeholder="masukan email anda" aria-label="email" aria-describedby="email" required>
+                        <div class="invalid-feedback email text-end">
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text"
                                id="first_name"><i class="fa fa fa-user"></i></label>
                         <input type="text" name="first_name"
-                               class="form-control <?php echo isset(session()->get("errors")['first_name']) ? 'is-invalid' : '' ?>"
-                               placeholder="nama depan" aria-label="first_name" aria-describedby="first_name" required value="<?php echo set_value("first_name");?>">
-                        <div class="invalid-feedback text-end">
-                            <?php
-                            if(isset(session()->get("errors")['first_name'])):
-                                echo session()->getFlashdata('errors')['first_name'];
-                            endif;
-                            ?>
+                               class="form-control input_first_name"
+                               placeholder="nama depan" aria-label="first_name" aria-describedby="first_name" required>
+                        <div class="invalid-feedback first_name text-end">
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text"
                                id="last_name"><i class="fa fa fa-user"></i></label>
                         <input type="text" name="last_name"
-                               class="form-control <?php echo isset(session()->get("errors")['last_name']) ? 'is-invalid' : '' ?>"
-                               placeholder="nama belakang" aria-label="last_name" aria-describedby="last_name" required value="<?php echo set_value("last_name");?>">
-                        <div class="invalid-feedback text-end">
-                            <?php
-                            if(isset(session()->get("errors")['last_name'])):
-                                echo session()->getFlashdata('errors')['last_name'];
-                            endif;
-                            ?>
+                               class="form-control input_last_name"
+                               placeholder="nama belakang" aria-label="last_name" aria-describedby="last_name" required>
+                        <div class="invalid-feedback last_name text-end">
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text"
                                id="password"><i class="fa fa-lock"></i></label>
                         <input type="password" name="password"
-                               class="form-control password <?php echo isset(session()->get("errors")['password']) ? 'is-invalid' : '' ?>"
+                               class="form-control password"
                                placeholder="buat password" aria-label="password" aria-describedby="password" required>
                         <label class="input-group-text" id="password"><i class="password_show_hide fa fa-eye"></i></label>
-                        <div class="invalid-feedback text-end">
-                            <?php
-                            if(isset(session()->get("errors")['password'])):
-                                echo session()->getFlashdata('errors')['password'];
-                            endif;
-                            ?>
+                        <div class="invalid-feedback password text-end">
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" id="confirm_password"><i class="fa fa-lock"></i></label>
-                        <input type="password" name="confirm_password" class="form-control password <?php echo isset(session()->get("errors")['confirm_password']) ? 'is-invalid' : '' ?>" placeholder="konfirmasi password"
+                        <input type="password" name="confirm_password" class="form-control password" placeholder="konfirmasi password"
                                aria-label="confirm_password" aria-describedby="confirm_password" required>
                         <label class="input-group-text" id="password"><i class="password_show_hide fa fa-eye"></i></label>
-                        <div class="invalid-feedback text-end">
-                            <?php
-                            if(isset(session()->get("errors")['confirm_password'])):
-                                echo session()->getFlashdata('errors')['confirm_password'];
-                            endif;
-                            ?>
+                        <div class="invalid-feedback confirm_password text-end">
                         </div>
                     </div>
 
-                    <button class="btn btn-danger w-100 py-2 mt-4" type="submit">Registrasi</button>
+                    <button class="btn-registration btn btn-danger w-100 py-2 mt-4" type="button">Registrasi</button>
                     <p class="my-3 text-body-secondary text-center">Sudah punya akun? login <a href="/" target="_self" class="text-danger fw-medium link-underline link-underline-opacity-0">di sini</a></p>
                 </form>
-                <?php
-                if (session()->get("error_email")) {
-                    ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?php
-                    echo session()->getFlashdata('error_email');
-                    ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <?php
-                    session()->destroy();
-                }
-                ?>
+                <div class="error-pesan"></div>
             </div>
 
         </div>
@@ -144,6 +105,57 @@
                 }else{
                     $(this).removeClass("fa-eye-slash").addClass("fa-eye");
                     $(this).parent("label").prev("input.password").attr("type", "password");
+                }
+            });
+        $(document).on(
+            "click",
+            ".btn-registration",
+            function (e) {
+                $(".registration-form").find("input").removeClass("is-invalid");
+                $(".berhasil-pesan").html("");
+                $(".error-pesan").html("");
+                if($("input[name='confirm_password']").val() != $("input[name='password']").val()){
+                    let html ='';
+                    if($("input[name='confirm_password']").val().length==0){
+                        html = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
+                            'konfirmasi password harus harus di isi'+
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                        $(html).appendTo($(".error-pesan"));
+                    }else{
+                        html = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
+                            'konfirmasi password tidak sama'+
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                        $(html).appendTo($(".error-pesan"));
+                    }
+
+
+                }else {
+                    jQuery.ajax({
+                        url: "https://take-home-test-api.nutech-integrasi.app/registration",
+                        type: "POST",
+                        data: $(".registration-form").serializeArray(),
+                        dataType: "JSON",
+                        beforeSend: function () {
+                            ci_helper.helper.blockUI('html');
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            ci_helper.helper.unblockUI('html');
+                            let html = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                                data.message +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                            $(html).appendTo($(".berhasil-pesan"));
+                            ci_helper.helper.unblockUI('html');
+                            $(".registration-form")[0].reset();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            let html = '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                                jqXHR.responseJSON.message +
+                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                            $(html).appendTo($(".error-pesan"));
+                            ci_helper.helper.unblockUI('html');
+                        }
+                    });
                 }
             });
 
