@@ -27,7 +27,7 @@ https://api-doc-tht.nutech-integrasi.app
 1. Buka gitbash di dalam directory aplikasi sims ppob lalu jalankan baris berikut:
 
 ```
-composer install
+composer install or composer update
 ```
 
 6. Jalankan Aplikasi dengan mengetik perintah berikut:
