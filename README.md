@@ -1,6 +1,6 @@
 # SIMS PPOB - Adhitya Sukma
 
-**SIMS PPOB** adalah aplikasi Assignment Front End Web Programmer yang dibuat mengunakan framework CodeIgniter 4.5.2 dan Aplikasi **SIMS PPOB** memiliki
+**SIMS PPOB** adalah aplikasi Assignment yang dibuat mengunakan framework CodeIgniter 4.5.2 dan Aplikasi **SIMS PPOB** memiliki
 beberapa fitur seperti:
 
 1. Registrasi
@@ -12,10 +12,26 @@ beberapa fitur seperti:
 7. Pembayaran
 8. Riwayat Transaksi
 
-## Dokumentasi API SIMS PPOB
+# Fitur
 
-Aplikasi SIMS PPOB integration dengan API dari SIMS PPOB sebagai berikut:
-https://api-doc-tht.nutech-integrasi.app
+| Login | Registrasi |
+|-------|------------|
+| <a href="https://prnt.sc/lwj1hTorGLDN" target="_blank"><img src="https://image.prntscr.com/image/YssZctNBTGiHvYl1VgFsXA.png" width="100%"></a> | <a href="https://prnt.sc/NakWOXa8-UU0" target="_blank"><img src="https://image.prntscr.com/image/EMKTdelCTGSn9sMX6ziQrg.png" width="100%"></a> |
+
+| Dashboard | Lihat Profile |
+|-----------|----------------|
+| <a href="https://prnt.sc/OWSEYvHR7wky" target="_blank"><img src="https://image.prntscr.com/image/w9OZHz3_QqiuTbeuf3yyTA.png" width="100%"></a> | <a href="https://prnt.sc/uae_Iu4--n1E" target="_blank"><img src="https://image.prntscr.com/image/9TciGiXFSGW_POkiMMHc3w.png" width="100%"></a> |
+
+| Top Up | Pembayaran |
+|--------|-------------|
+| <a href="https://prnt.sc/kNZmoS4AhJX0" target="_blank"><img src="https://image.prntscr.com/image/FfgMGDudT0eRExuyNxkqcg.png" width="100%"></a> | <a href="https://prnt.sc/y01STXoD86D7" target="_blank"><img src="https://image.prntscr.com/image/8RjW9M0OR16ab2BWT_xiPQ.png" width="100%"></a> |
+
+| Riwayat Transaksi |  |
+|--------------------|--|
+| <a href="https://prnt.sc/T0Q7OFgO6sig" target="_blank"><img src="https://image.prntscr.com/image/dDAeRlDPRsKA2jJpWortQw.png" width="100%"></a> |  |
+
+
+
 
 # Kebutuhan Aplikasi
 
@@ -28,25 +44,27 @@ https://api-doc-tht.nutech-integrasi.app
 - mysqlnd (if planning to use MySQL)
 - libcurl (if planning to use the HTTP\CURLRequest library)
 
-1. Download dan Install xampp https://www.apachefriends.org/download.html
-1. Donwload dan Install Composer https://getcomposer.org/
-1. Download dan Install gitbash https://git-scm.com/downloads
-1. Copy File ENV
+3. Download dan Install xampp https://www.apachefriends.org/download.html
+4. Donwload dan Install Composer https://getcomposer.org/
+5. Download dan Install gitbash https://git-scm.com/downloads
+6. Copy File ENV karena
    CodeIgniter perlu file .env.
-   Jika .env belum ada maka Buka gitbash atau command prompt (CMD) di dalam directory aplikasi sims ppob lalu jalankan baris berikut:
+   Jika .env belum ada maka buka gitbash atau command prompt (CMD) di dalam directory aplikasi sims ppob lalu jalankan baris berikut:
 
 ```
 cp env .env
 ```
 
-1. Set Mode Development (Opsional)
+7. Set Mode Development (Opsional)
+   
    Buka file .env lalu ubah:
 
 ```
 CI_ENVIRONMENT = development
 ```
 
-1. Konfigurasi BaseURL
+8. Konfigurasi BaseURL
+   
    Buka .env, aktifkan bagian baseURL:
 
 ```
@@ -69,7 +87,7 @@ composer install
 php spark serve
 ```
 
-7. Kemudian akses di browser:
+2. Kemudian akses di browser:
 
 ```
 http://localhost:8080
