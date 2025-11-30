@@ -1,15 +1,45 @@
 <?php
 
-$this->extend('layout/main');
+$this->extend('layout\main');
 
 $this->section('content') ?>
     <div class="section-akun row">
-        <div class="content-akun text-center"></div>
+        <div class="text-center">
+            <?php
+            if (empty($data['user']['profile_image'])):?>
+                <div class="row-profile">
+                    <a href="#" class="ubah_photo_profile">
+                        <img class="align-top me-2 rounded-circle border img-thumbnail"
+                             src="../assets/img/profile/Profile Photo.png"
+                             alt="Profile Photo.png">
+                        <i class="bi bi-pencil-fill rounded-circle border icon-ubah-photo"></i>
+
+                    </a>
+                </div>
+            <?php
+            else:?>
+                <div class="row-profile">
+                    <a href="#" class="ubah_photo_profile">
+                        <img class="align-top me-2 rounded-circle border img-thumbnail"
+                             src="<?php echo $data['user']['profile_image'] ?>"
+                             alt="<?php echo $data['user']['profile_image'] ?>">
+                        <i class="bi bi-pencil-fill rounded-circle border icon-ubah-photo"></i>
+                    </a>
+                </div>
+            <?php
+            endif;
+            ?>
+            <form class="akun-update-photo" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="file" name="profile_image" class="img uploadFile"/>
+            </form>
+            <div class="fw-medium akun-name fs-4 mt-3">
+                <?php echo $data['user']['first_name'] . " " . $data['user']['last_name']; ?>
+            </div>
+        </div>
         <div class="section-form-profile mt-4 col-6 m-auto">
             <div class="pesan">
             </div>
-            <form class="mt-5 form-akun" method="post"
-                  action="https://take-home-test-api.nutech-integrasi.app/profile/update"
+            <form class="mt-5 form-akun" method="post" action="/profile/update"
                   enctype="application/x-www-form-urlencoded">
                 <?= csrf_field() ?>
                 <div class="mb-1">
@@ -18,10 +48,15 @@ $this->section('content') ?>
                 <div class="input-group mb-3">
                     <label class="input-group-text">@</label>
                     <input type="email" name="email" id="email"
-                           class="form-control email"
+                           class="form-control <?php echo isset(session()->get("errors")['email']) ? 'is-invalid' : '' ?>"
                            placeholder="masukan email anda" aria-label="email" aria-describedby="email" required
-                           disabled>
+                           disabled value="<?php echo $data['user']['email']; ?>">
                     <div class="invalid-feedback text-end">
+                        <?php
+                        if (isset(session()->get("errors")['email'])):
+                            echo session()->getFlashdata('errors')['email'];
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <div class="mb-1">
@@ -31,10 +66,15 @@ $this->section('content') ?>
                     <label class="input-group-text"
                            id="first_name"><i class="fa fa fa-user"></i></label>
                     <input type="text" name="first_name"
-                           class="form-control"
+                           class="form-control <?php echo isset(session()->get("errors")['first_name']) ? 'is-invalid' : '' ?>"
                            placeholder="nama depan" aria-label="first_name" aria-describedby="first_name" disabled
-                           required>
+                           required value="<?php echo $data['user']['first_name']; ?>">
                     <div class="invalid-feedback text-end">
+                        <?php
+                        if (isset(session()->get("errors")['first_name'])):
+                            echo session()->getFlashdata('errors')['first_name'];
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <div class="mb-1">
@@ -44,15 +84,20 @@ $this->section('content') ?>
                     <label class="input-group-text"
                            id="last_name"><i class="fa fa fa-user"></i></label>
                     <input type="text" name="last_name"
-                           class="form-control"
+                           class="form-control <?php echo isset(session()->get("errors")['last_name']) ? 'is-invalid' : '' ?>"
                            placeholder="nama belakang" aria-label="last_name" aria-describedby="last_name" disabled
-                           required>
+                           required value="<?php echo $data['user']['last_name']; ?>">
                     <div class="invalid-feedback text-end">
+                        <?php
+                        if (isset(session()->get("errors")['last_name'])):
+                            echo session()->getFlashdata('errors')['last_name'];
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <input class="btn-1 btn-edit-profile btn btn-outline-danger w-100 py-2 mt-4" type="button"
                        value="Edit Profile">
-                <a href="#" class="btn-2 btn-logout btn btn-danger text-light w-100 py-2 mt-4">Logout</a>
+                <a href="/logout" class="btn-2 btn-logout btn btn-danger text-light w-100 py-2 mt-4">Logout</a>
             </form>
         </div>
     </div>
@@ -70,33 +115,6 @@ $this->section('content') ?>
     <script type="text/javascript">
         jQuery(function ($) {
             $(document).ready(function (e) {
-                if ($.session.get("user_email")) {
-                    $("input[name='email']").val($.session.get("user_email"));
-                }
-                if ($.session.get("user_first_name")) {
-                    $("input[name='first_name']").val($.session.get("user_first_name"));
-                }
-                if ($.session.get("user_last_name")) {
-                    $("input[name='last_name']").val($.session.get("user_last_name"));
-                }
-                if ($.session.get("user_profile_image")) {
-                    let html = '';
-                    html += '<div class="row-profile">' +
-                        '<a href="#" class="ubah_photo_profile">' +
-                        '<img class="align-top me-2 rounded-circle border img-thumbnail" src="' + $.session.get("user_profile_image") + '" alt="' + $.session.get("user_profile_image") + '">' +
-                        '<i class="bi bi-pencil-fill rounded-circle border icon-ubah-photo"></i>' +
-                        '</a>' +
-                        '</div>';
-                    html += '<form class="akun-update-photo">' +
-                        '<input type="file" name="file" id="uploadFile" class="img uploadFile"/>' +
-                        '</form>';
-                    if ($.session.get("user_first_name") && $.session.get("user_last_name")) {
-                        html += '<div class="fw-medium akun-name fs-4 mt-3">';
-                        html += $.session.get("user_first_name") + ' ' + $.session.get("user_last_name");
-                        html += '</div>';
-                    }
-                    $(".content-akun").html(html);
-                }
                 $(document).on(
                     "mouseover",
                     ".ubah_photo_profile",
@@ -108,21 +126,12 @@ $this->section('content') ?>
                     function (e) {
                         $(".icon-ubah-photo").hide();
                     });
-
                 $(document).on(
                     "click",
                     ".ubah_photo_profile",
                     function (e) {
                         e.preventDefault();
-                        $("#uploadFile").trigger('click');
-                    });
-                $(document).on(
-                    "click",
-                    ".btn-logout",
-                    function (e) {
-                        e.preventDefault();
-                        $.session.clear();
-                        window.location.href = '<?php echo site_url("/logout")?>';
+                        $(".uploadFile").click();
                     });
                 $(document).on(
                     "click",
@@ -134,8 +143,7 @@ $this->section('content') ?>
                                 $(".btn-2").removeClass("btn-logout").addClass("btn-back-e-profile").attr("href", "#").html("Batalkan");
                             }
                             $(this).removeClass("btn-edit-profile").addClass("btn-update-profile").attr("type", "submit").val("Simpan");
-                            $(".form-akun").find("input").not(".email").removeAttr("disabled");
-
+                            $(".form-akun").find("input").removeAttr("disabled");
                         }
 
                     });
@@ -157,22 +165,44 @@ $this->section('content') ?>
                     ".btn-back-e-profile",
                     function (e) {
                         e.preventDefault();
-                        if ($.session.get("user_email")) {
-                            $("input[name='email']").val($.session.get("user_email"));
-                        }
-                        if ($.session.get("user_first_name")) {
-                            $("input[name='first_name']").val($.session.get("user_first_name"));
-                        }
-                        if ($.session.get("user_last_name")) {
-                            $("input[name='last_name']").val($.session.get("user_last_name"));
-                        }
-                        if ($('.btn-2').hasClass("btn-back-e-profile")) {
-                            $('.btn-2').removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
+                        jQuery.ajax({
+                            url: "<?php echo site_url('profile/get_data')?>",
+                            type: "GET",
+                            dataType: "JSON",
+                            beforeSend: function () {
+                                ci_helper.helper.blockUI('html');
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                ci_helper.helper.unblockUI('html');
+                                if (!data.status) {
+                                    $(".pesan").html(data.pesan);
+                                } else {
+                                    $("input[name='email']").val(data.email);
+                                    $("input[name='first_name']").val(data.first_name);
+                                    $("input[name='last_name']").val(data.last_name);
+                                    if ($('.btn-2').hasClass("btn-back-e-profile")) {
+                                        $('.btn-2').removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
+                                    }
+                                    if ($('.btn-1').hasClass("btn-update-profile")) {
+                                        $(".btn-1").removeClass("btn-update-profile").addClass("btn-edit-profile").attr("type", "button").val("Edit Profile");
+                                    }
+                                    $(".form-akun").find("input").not(".btn-1").attr("disabled", "disabled");
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('Error get data from ajax');
+                                ci_helper.helper.unblockUI('html');
+                            }
+                        });
+                        if ($(this).hasClass("btn-back-e-profile")) {
+
+                            $(this).removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
                         }
                         if ($('.btn-1').hasClass("btn-update-profile")) {
                             $(".btn-1").removeClass("btn-update-profile").addClass("btn-edit-profile").attr("type", "button").val("Edit Profile");
                         }
-                        $(".form-akun").find("input").not(".btn-1").not(".email").attr("disabled", "disabled");
+                        $(".form-akun").find("input").not(".btn-1").attr("disabled", "disabled");
                     });
                 $(document).on(
                     "click",
@@ -181,134 +211,105 @@ $this->section('content') ?>
                         e.preventDefault();
                         let formData = new FormData($(".form-akun")[0]);
                         jQuery.ajax({
-                            url: "https://take-home-test-api.nutech-integrasi.app/profile/update",
-                            data: {
-                                first_name: $("input[name='first_name']").val(),
-                                last_name: $("input[name='last_name']").val(),
-                            },
-                            headers: {
-                                Authorization: 'Bearer ' + $.session.get('token')
-                            },
-                            type: "PUT",
+                            url: "<?php echo site_url('profile/update')?>",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            type: "POST",
                             dataType: "JSON",
                             beforeSend: function () {
                                 ci_helper.helper.blockUI('html');
                             },
-                            success: function (response) {
+                            success: function (data) {
                                 ci_helper.helper.unblockUI('html');
-
-                                let html = '';
-                                $.session.set("user_email", response.data.email);
-                                $.session.set("user_first_name", response.data.first_name);
-                                $.session.set("user_last_name", response.data.last_name);
-
-                                $(".akun-name").html(response.data.first_name + " " + response.data.last_name);
-
-                                html += '<div class="text-center text-center my-3">' +
-                                    '<i class="modal-icon bi bi-check-circle-fill text-success"></i>' +
-                                    '</div>';
-                                html += '<div class="text-center">' + response.message + '</div>';
-                                html += '<div class="text-center my-3"><a href="#" class="text-secondary fw-medium" data-bs-dismiss="modal">Tutup</a></div>';
-                                $("#main-modal").find(".modal-body").html(html);
-                                $("#main-modal").modal("show");
-
-                                if ($('.btn-2').hasClass("btn-back-e-profile")) {
-                                    $('.btn-2').removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
+                                if (!data.status) {
+                                    $(".pesan").html(data.pesan);
+                                    // $("#akun-modal").find(".modal-content").html(data.pesan);
+                                    // $("#akun-modal").modal("show");
+                                } else {
+                                    if ($('.btn-2').hasClass("btn-back-e-profile")) {
+                                        $('.btn-2').removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
+                                    }
+                                    if ($('.btn-1').hasClass("btn-update-profile")) {
+                                        $(".btn-1").removeClass("btn-update-profile").addClass("btn-edit-profile").attr("type", "button").val("Edit Profile");
+                                    }
+                                    $(".form-akun").find("input").not(".btn-1").attr("disabled", "disabled");
+                                    $(".pesan").html(data.pesan);
+                                    $(".akun-name").html(data.akun_name);
                                 }
-                                if ($('.btn-1').hasClass("btn-update-profile")) {
-                                    $(".btn-1").removeClass("btn-update-profile").addClass("btn-edit-profile").attr("type", "button").val("Edit Profile");
-                                }
-                                $(".form-akun").find("input").not(".btn-1").not(".email").attr("disabled", "disabled");
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
-                                let html = '';
-                                html += '<div class="text-center text-center my-3">' +
-                                    '<i class="topup-gagal-icon bi bi-x-circle-fill"></i>' +
-                                    '</div>';
-                                html += '<div class="text-center">' + jqXHR.responseJSON.message + '</div>';
-                                html += '<div class="text-center my-3"><a href="#" class="text-secondary fw-medium" data-bs-dismiss="modal">Tutup</a></div>';
-                                $("#main-modal").find(".modal-body").html(html);
-                                $("#main-modal").modal("show");
-                                if ($.session.get("user_first_name")) {
-                                    $("input[name='first_name']").val($.session.get("user_first_name"));
-                                }
-                                if ($.session.get("user_last_name")) {
-                                    $("input[name='last_name']").val($.session.get("user_last_name"));
-                                }
-                                if ($('.btn-2').hasClass("btn-back-e-profile")) {
-                                    $('.btn-2').removeClass("btn-back-e-profile").addClass("btn-logout").attr("href", "/logout").html("Logout");
-                                }
-                                if ($('.btn-1').hasClass("btn-update-profile")) {
-                                    $(".btn-1").removeClass("btn-update-profile").addClass("btn-edit-profile").attr("type", "button").val("Edit Profile");
-                                }
-                                $(".form-akun").find("input").not(".btn-1").not(".email").attr("disabled", "disabled");
+                                alert('Error get data from ajax');
                                 ci_helper.helper.unblockUI('html');
                             }
                         });
                     });
                 $("#akun-modal").modal({backdrop: 'static', keyboard: false});
-                $("input:file").change(function () {
-                    let formData = new FormData($('.akun-update-photo')[0]),
-                        filesize = ci_helper.helper.formatBytes($("input[type='file']")[0].files[0].size, 2);
-                    if (filesize > 100) {
-                        let html = '';
-                        html += '<div class="text-center text-center my-3">' +
-                            '<i class="topup-gagal-icon bi bi-x-circle-fill"></i>' +
-                            '</div>';
-                        html += '<div class="text-center">Maksimum ukuran image yang diupload dibawah 100 kb</div>';
-                        html += '<div class="text-center my-3"><a href="#" class="text-secondary fw-medium" data-bs-dismiss="modal">Tutup</a></div>';
-                        $("#main-modal").find(".modal-body").html(html);
-                        $("#main-modal").modal("show");
-                    } else {
-                        $.ajax({
-                            url: "https://take-home-test-api.nutech-integrasi.app/profile/image",
-                            data: formData,
-                            contentType: false,
-                            processData: false,
-                            type: "PUT",
-                            dataType: "JSON",
-                            headers: {
-                                Authorization: 'Bearer ' + $.session.get('token')
-                            },
-                            beforeSend: function () {
-                                ci_helper.helper.blockUI('html');
-                            },
-                            success: function (response) {
-                                ci_helper.helper.unblockUI('html');
-                                let profile_image, htmlp = '', html = '';
-                                if (typeof response.data !== "undefined") {
-                                    profile_image = response.data.profile_image;
-                                    const pathArray = profile_image.split("/");
-                                    if (pathArray.at(-1) == "null") {
-                                        profile_image = "<?php echo site_url("../assets/img/profile/Profile Photo.png")?>";
-                                    }
-                                    $.session.set("user_profile_image", profile_image);
-                                }
 
-                                $(".ubah_photo_profile").find("img").attr("src", response.data.profile_image);
-                                $(".ubah_photo_profile").find("img").attr("alt", response.data.profile_image);
-
-                                html += '<div class="text-center text-center my-3">' +
-                                    '<i class="modal-icon bi bi-check-circle-fill text-success"></i>' +
-                                    '</div>';
-                                html += '<div class="text-center">' + response.message + '</div>';
-                                html += '<div class="text-center my-3"><a href="#" class="text-secondary fw-medium" data-bs-dismiss="modal">Tutup</a></div>';
-                                $("#akun-modal").find(".modal-body").html(html);
+                $(document).on('submit', '.akun-update-photo', function (e) {
+                    // e.preventDefault();
+                    let formData = new FormData($(this)[0]);
+                    jQuery.ajax({
+                        url: "<?php echo site_url('profile/image')?>",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        type: "POST",
+                        dataType: "JSON",
+                        beforeSend: function () {
+                            ci_helper.helper.blockUI('html');
+                        },
+                        success: function (data) {
+                            ci_helper.helper.unblockUI('html');
+                            if (!data.status) {
+                                $("#akun-modal").find(".modal-content").html(data.pesan);
                                 $("#akun-modal").modal("show");
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                let html = '';
-                                html += '<div class="text-center text-center my-3">' +
-                                    '<i class="topup-gagal-icon bi bi-x-circle-fill"></i>' +
-                                    '</div>';
-                                html += '<div class="text-center">' + jqXHR.responseJSON.message + '</div>';
-                                html += '<div class="text-center my-3"><a href="#" class="text-secondary fw-medium" data-bs-dismiss="modal">Tutup</a></div>';
-                                $("#main-modal").find(".modal-body").html(html);
-                                $("#main-modal").modal("show");
-                                ci_helper.helper.unblockUI('html');
+                            } else {
+                                $(".ubah_photo_profile").find("img").attr("src", data.img);
                             }
-                        });
-                    }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert('Error get data from ajax');
+                            ci_helper.helper.unblockUI('html');
+                        }
+                    });
+                    return false;
+                });
+                $(".uploadFile").on("change", function () {
+                    var files = !!this.files ? this.files : [];
+                    if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+                    $(".akun-update-photo").submit();
+                    // let formData = new FormData();
+                    // formData.append('profile_image', files);
+                    // console.log(files[0]);
+                    //jQuery.ajax({
+                    //    url: "<?php //echo site_url('profile/image')?>//",
+                    //    data: {
+                    //        profile_image: files[0]
+                    //    },
+                    //    type: "POST",
+                    //    dataType: "JSON",
+                    //    beforeSend: function () {
+                    //        // ci_helper.helper.blockUI('#topup-modal');
+                    //    },
+                    //    success: function (data) {
+                    //        // ci_helper.helper.unblockUI('#topup-modal');
+                    //        // if (!data.status) {
+                    //        //     $("#topup-modal").find(".modal-content").html(data.pesan);
+                    //        //     $("#topup-modal").modal("show");
+                    //        // }else{
+                    //        //     $("#topup-modal").find(".modal-content").html(data.pesan);
+                    //        //     $("#topup-modal").modal("show");
+                    //        //     $(".section-total-saldo .nominal").html(data.total_saldo_user);
+                    //        // }
+                    //    },
+                    //    error: function (jqXHR, textStatus, errorThrown) {
+                    //        alert('Error get data from ajax');
+                    //        // ci_helper.helper.unblockUI('#topup-modal');
+                    //    }
+                    //});
                 });
             });
         })

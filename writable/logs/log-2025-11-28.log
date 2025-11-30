@@ -1,0 +1,286 @@
+ERROR - 2025-11-28 09:18:39 --> mysqli_sql_exception: Tablespace '`sims-ppob`.`migrations`' exists. in F:\project\codeigniter\sims-ppob\system\Database\MySQLi\Connection.php:310
+Stack trace:
+#0 F:\project\codeigniter\sims-ppob\system\Database\MySQLi\Connection.php(310): mysqli->query('CREATE TABLE `m...', 0)
+#1 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(732): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `m...')
+#2 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `m...')
+#3 F:\project\codeigniter\sims-ppob\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `m...')
+#4 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(806): CodeIgniter\Database\Forge->createTable('migrations', true)
+#5 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(163): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 F:\project\codeigniter\sims-ppob\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 F:\project\codeigniter\sims-ppob\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 F:\project\codeigniter\sims-ppob\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 F:\project\codeigniter\sims-ppob\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#10 F:\project\codeigniter\sims-ppob\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#11 F:\project\codeigniter\sims-ppob\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-11-28 09:19:15 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'sims-ppob' in F:\project\codeigniter\sims-ppob\system\Database\MySQLi\Connection.php:186
+Stack trace:
+#0 F:\project\codeigniter\sims-ppob\system\Database\MySQLi\Connection.php(186): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'sims-ppob', 3306, '', 0)
+#1 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(1481): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(1500): CodeIgniter\Database\BaseConnection->listTables()
+#5 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(759): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(163): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 F:\project\codeigniter\sims-ppob\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 F:\project\codeigniter\sims-ppob\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 F:\project\codeigniter\sims-ppob\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 F:\project\codeigniter\sims-ppob\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 F:\project\codeigniter\sims-ppob\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 F:\project\codeigniter\sims-ppob\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'sims-ppob' in F:\project\codeigniter\sims-ppob\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(1481): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 F:\project\codeigniter\sims-ppob\system\Database\BaseConnection.php(1500): CodeIgniter\Database\BaseConnection->listTables()
+#4 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(759): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 F:\project\codeigniter\sims-ppob\system\Database\MigrationRunner.php(163): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 F:\project\codeigniter\sims-ppob\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 F:\project\codeigniter\sims-ppob\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 F:\project\codeigniter\sims-ppob\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 F:\project\codeigniter\sims-ppob\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#10 F:\project\codeigniter\sims-ppob\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#11 F:\project\codeigniter\sims-ppob\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#12 {main}
+INFO - 2025-11-28 09:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:23:22 --> ErrorException: Undefined array key "first_name"
+[Method: GET, Route: /]
+in APPPATH\Views\utama.php on line 23.
+ 1 APPPATH\Views\utama.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "first_name"', 'F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php', 23)
+ 2 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('utama', [], true)
+ 5 APPPATH\Controllers\Home.php(49): view('utama', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:24:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:24:42 --> ErrorException: Undefined array key "first_name"
+[Method: GET, Route: /]
+in APPPATH\Views\utama.php on line 23.
+ 1 APPPATH\Views\utama.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "first_name"', 'F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php', 23)
+ 2 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('utama', [], true)
+ 5 APPPATH\Controllers\Home.php(49): view('utama', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:24:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:24:53 --> ErrorException: Undefined array key "first_name"
+[Method: GET, Route: /]
+in APPPATH\Views\utama.php on line 23.
+ 1 APPPATH\Views\utama.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "first_name"', 'F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php', 23)
+ 2 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('utama', [], true)
+ 5 APPPATH\Controllers\Home.php(49): view('utama', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:28:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:28:31 --> ErrorException: Undefined array key "first_name"
+[Method: GET, Route: /]
+in APPPATH\Views\utama.php on line 23.
+ 1 APPPATH\Views\utama.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "first_name"', 'F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php', 23)
+ 2 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('utama', [], true)
+ 5 APPPATH\Controllers\Home.php(49): view('utama', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:31:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:31:54 --> ErrorException: Undefined array key "first_name"
+[Method: GET, Route: /]
+in APPPATH\Views\utama.php on line 23.
+ 1 APPPATH\Views\utama.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "first_name"', 'F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php', 23)
+ 2 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\utama.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('utama', [], true)
+ 5 APPPATH\Controllers\Home.php(49): view('utama', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:32:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:32:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:33:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:33:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:33:15 --> TypeError: form_input(): Argument #2 ($value) must be of type string, true given, called in F:\project\codeigniter\sims-ppob\system\Helpers\form_helper.php on line 126
+[Method: GET, Route: registration]
+in SYSTEMPATH\Helpers\form_helper.php on line 146.
+ 1 SYSTEMPATH\Helpers\form_helper.php(126): form_input('is_registration', true, '', 'hidden')
+ 2 APPPATH\Views\auth\registration.php(33): form_hidden('is_registration', true)
+ 3 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\auth\\registration.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('auth/registration', [], true)
+ 6 APPPATH\Controllers\Auth.php(33): view('auth/registration')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->registration()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:37:23 --> TypeError: form_input(): Argument #2 ($value) must be of type string, true given, called in F:\project\codeigniter\sims-ppob\system\Helpers\form_helper.php on line 126
+[Method: GET, Route: registration]
+in SYSTEMPATH\Helpers\form_helper.php on line 146.
+ 1 SYSTEMPATH\Helpers\form_helper.php(126): form_input('is_registration', true, '', 'hidden')
+ 2 APPPATH\Views\auth\registration.php(33): form_hidden('is_registration', true)
+ 3 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\auth\\registration.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('auth/registration', [], true)
+ 6 APPPATH\Controllers\Auth.php(33): view('auth/registration')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->registration()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:39:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:39:11 --> TypeError: form_input(): Argument #2 ($value) must be of type string, true given, called in F:\project\codeigniter\sims-ppob\system\Helpers\form_helper.php on line 126
+[Method: GET, Route: registration]
+in SYSTEMPATH\Helpers\form_helper.php on line 146.
+ 1 SYSTEMPATH\Helpers\form_helper.php(126): form_input('is_registration', true, '', 'hidden')
+ 2 APPPATH\Views\auth\registration.php(33): form_hidden('is_registration', true)
+ 3 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\auth\\registration.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('auth/registration', [], true)
+ 6 APPPATH\Controllers\Auth.php(33): view('auth/registration')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->registration()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:39:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:39:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-28 09:39:24 --> TypeError: form_input(): Argument #2 ($value) must be of type string, true given, called in F:\project\codeigniter\sims-ppob\system\Helpers\form_helper.php on line 126
+[Method: GET, Route: registration]
+in SYSTEMPATH\Helpers\form_helper.php on line 146.
+ 1 SYSTEMPATH\Helpers\form_helper.php(126): form_input('is_registration', true, '', 'hidden')
+ 2 APPPATH\Views\auth\registration.php(33): form_hidden('is_registration', true)
+ 3 SYSTEMPATH\View\View.php(234): include('F:\\project\\codeigniter\\sims-ppob\\app\\Views\\auth\\registration.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('auth/registration', [], true)
+ 6 APPPATH\Controllers\Auth.php(33): view('auth/registration')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->registration()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\Commands\Server\rewrite.php(49): require_once('F:\\project\\codeigniter\\sims-ppob\\public\\index.php')
+INFO - 2025-11-28 09:41:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:42:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:43:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:50:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:50:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 09:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:09:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:10:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:12:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:14:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:15:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:16:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:17:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:18:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:18:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:18:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 10:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
